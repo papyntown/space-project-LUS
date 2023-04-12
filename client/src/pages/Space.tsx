@@ -70,12 +70,19 @@ const Space: React.FC = () => {
                         className="text-area-container"
                         {...slideAnimation("right")}>
                         {snap.textArea ? (
-                            data.map((satelite: any) => (
-                                <TextArea
-                                    satelite={satelite}
-                                    key={satelite._id}
-                                />
-                            ))
+                            data.length >= 1 ? (
+                                data.map((satelite: any) => (
+                                    <TextArea
+                                        satelite={satelite}
+                                        key={satelite._id}
+                                    />
+                                ))
+                            ) : (
+                                <h1>
+                                    (Il est possible que vous n'ayez pas accès a
+                                    la BDD)
+                                </h1>
+                            )
                         ) : (
                             <h1
                                 className="hover"
