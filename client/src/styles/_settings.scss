@@ -1,0 +1,40 @@
+@font-face {
+    font-family: "TrivialBold";
+    src: url("../assets/font/Trivial-Bold.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "TrivialLight";
+    src: url("../assets/font/Trivial-Light.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+$fontBold: "TrivialBold", sans-serif;
+$fontContent: "TrivialLight", cursive;
+
+$shadow: 0 5px 15px rgba(0, 0, 0, 0.322);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background: black;
+    overflow: hidden;
+    color: whitesmoke;
+    font-family: $fontContent;
+}
+li {
+    list-style: none;
+}

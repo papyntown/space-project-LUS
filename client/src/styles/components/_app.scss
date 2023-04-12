@@ -1,0 +1,13 @@
+.app {
+    transition-property: all;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+// Background Space classique
+.background-img-container {
+    background-image: url("./background.jpg");
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    height: 100vh;
+}

@@ -1,0 +1,19 @@
+.text-area-container {
+    position: absolute;
+    top: 30%;
+    left: 65%;
+    .card {
+        background-color: rgba(255, 255, 255, 0.389);
+        border-radius: 1rem;
+        padding: 0.5rem 1rem 1rem 1rem;
+        height: 20rem;
+        .card-header {
+            margin-bottom: 1rem;
+        }
+        .back {
+            position: absolute;
+            right: 10px;
+            bottom: 20px;
+        }
+    }
+}
