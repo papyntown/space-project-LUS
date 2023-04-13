@@ -17,4 +17,4 @@ const postShema = mongoose.Schema(
     }
 );
 //(Nom de la collection, strucutre de la collection)
-module.exports = mongoose.model("post", postShema);
+module.exports = mongoose.model("satellite", postShema);

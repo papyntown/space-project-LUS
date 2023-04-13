@@ -1,46 +1,72 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import state from "../store";
 import CustomButton from "./CustomButton";
 
 interface Props {
     satelite: any;
+    message: string;
 }
 
-const TextArea: React.FC<Props> = ({ satelite }) => {
-    const [newSatelite, setNewSatelite] = useState<string>("Premier satelite");
-    const [message, setMessage] = useState<string>(
-        "Le premier satélite au monde"
-    );
+const TextArea: React.FC<Props> = ({ satelite, message }) => {
+    const [isEdit, setIsEdit] = useState<boolean>(false);
+    const [newMessage, setNewMessage] = useState<string>("");
+    const textAreaRef = useRef(null); // Référence à la zone de texte
     const handleClick = () => {
         state.textArea = !state.textArea;
     };
-
-    // Crée un nouveau satelite
-    const PostNewSatelite = () => {
-        const data = {
-            author: newSatelite,
-            message: message,
-            // Id provisoir en attendant le retour de la BDD
-            _id: Date.now(),
-        };
-        axios.post("http://localhost:5000/post/", data);
-        console.log("Post New Satelite");
+    const handleTextAreaBlur = () => {
+        setIsEdit(false); // Quitte le mode édition
+        handleEdit();
     };
-    //Fin de la création d'un nouveau  satelite
+    const handleEdit = () => {
+        if (newMessage) {
+            axios
+                .put(`http://localhost:5000/post/${satelite._id}`, {
+                    message: newMessage,
+                })
+                .then((res) => console.log("Message modifié"));
+        }
+    };
+
     return (
         <div className="card">
             <div className="card-header">
-                <h1 onClick={() => PostNewSatelite()}>
-                    {satelite ? satelite.author : "wait"}
-                </h1>
+                <h1>{satelite ? satelite.author : "wait"}</h1>
             </div>
             <div className="card-message">
-                <p>{satelite.message}</p>
+                {isEdit ? (
+                    <div className="edit-container">
+                        <label htmlFor="message-input">Edit:</label>
+                        <textarea
+                            id="message-input"
+                            defaultValue={
+                                newMessage ? newMessage : satelite.message
+                            }
+                            ref={textAreaRef}
+                            onBlur={handleTextAreaBlur}
+                            onChange={(e) => setNewMessage(e.target.value)}
+                        />
+                        <button
+                            onClick={() => {
+                                setIsEdit(false);
+                                handleEdit();
+                            }}>
+                            Valider édition
+                        </button>
+                    </div>
+                ) : (
+                    <p>{newMessage ? newMessage : satelite.message}</p>
+                )}
             </div>
-
             <div className="icons-part">
-                <div className="icons"></div>
+                <div className="icons">
+                    <span
+                        className="edit-icon"
+                        onClick={() => setIsEdit(!isEdit)}>
+                        &#9998;
+                    </span>
+                </div>
             </div>
             <div className="back">
                 <CustomButton

@@ -31,3 +31,17 @@ module.exports.deletePosts = async (req, res) => {
     await post.remove();
     res.status(200).json({ author: "Post supprimé " + req.params.id });
 };
+// Modifier un post
+module.exports.editPosts = async (req, res) => {
+    const post = await PostModel.findById(req.params.id);
+    if (!post) {
+        res.status(400).json({
+            message: "Post introuvable avec l'id : " + req.params.id,
+        });
+    }
+
+    const updatePost = await PostModel.findByIdAndUpdate(post, req.body, {
+        new: true,
+    });
+    res.status(200).json(updatePost);
+};
