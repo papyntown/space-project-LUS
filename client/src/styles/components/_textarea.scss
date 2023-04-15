@@ -7,7 +7,8 @@
         background-color: rgba(255, 255, 255, 0.389);
         border-radius: 1rem;
         padding: 0.5rem 1rem 1rem 1rem;
-        height: 20rem;
+        min-height: 20rem;
+        max-height: 28rem;
         .card-header {
             margin-bottom: 2rem;
         }
@@ -20,7 +21,22 @@
                 transform: scale(1.2);
             }
         }
-
+        .card-message {
+            textarea {
+                background: none;
+                resize: none;
+                border: 1px solid grey;
+                width: 100%;
+                font-size: 1.25rem;
+                border-radius: 10px;
+                padding: 10px;
+                color: white;
+                overflow: hidden;
+                height: auto;
+                min-height: 130px;
+                max-height: 180px;
+            }
+        }
         .icons-part {
             .icons {
                 .edit-icon {
@@ -37,18 +53,4 @@
             }
         }
     }
-}
-textarea {
-    background: none;
-    resize: none;
-    border: 1px solid grey;
-    width: 100%;
-    font-size: 1.25rem;
-    border-radius: 10px;
-    padding: 10px;
-    color: white;
-    overflow: hidden;
-    height: auto;
-    min-height: 130px;
-    max-height: 180px;
 }
